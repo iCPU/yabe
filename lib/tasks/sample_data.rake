@@ -20,5 +20,12 @@ namespace :db do
                    password: password,
                    password_confirmation: password)
     end
+
+    users = User.all(limit: 6)
+    50.times do
+      query = Faker::Lorem.sentence(3)
+      category = rand(1...4000)
+      users.each { |user| user.searches.create!(query: query, category: category) }
+    end
   end
 end

@@ -7,5 +7,16 @@
         <%= @user.name %>
       </h1>
     </section>
-  </aside>
+  </aside> 
+
+  <div class="span8">
+    <% if @user.searches.any? %>
+      <h3>Previous Searches (<%= @user.searches.count %>)</h3>
+      <ol class="searches">
+        <%= render @searches %>
+      </ol>
+      <%= will_paginate @searches %>
+    <% end %>
+  </div>
 </div>
+

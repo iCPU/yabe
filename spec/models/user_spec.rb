@@ -2,11 +2,14 @@
 #
 # Table name: users
 #
-#  id         :integer         not null, primary key
-#  name       :string(255)
-#  email      :string(255)
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
+#  id              :integer         not null, primary key
+#  name            :string(255)
+#  email           :string(255)
+#  created_at      :datetime        not null
+#  updated_at      :datetime        not null
+#  password_digest :string(255)
+#  remember_token  :string(255)
+#  admin           :boolean         default(FALSE)
 #
 
 require 'spec_helper'
@@ -26,6 +29,7 @@ describe User do
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) } 
   it { should respond_to(:authenticate) }
+  it { should respond_to(:searches) }
   it { should respond_to(:remember_token) }  
   it { should be_valid }
   
@@ -127,5 +131,28 @@ describe User do
   describe "remember token" do
     before { @user.save }
     its(:remember_token) { should_not be_blank }
+  end
+
+  describe "search associations" do
+
+    before { @user.save }
+    let!(:older_search) do 
+      FactoryGirl.create(:search, user: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_search) do
+      FactoryGirl.create(:search, user: @user, created_at: 1.hour.ago)
+    end
+
+    it "should have the right search in the right order" do
+      @user.searches.should == [newer_search, older_search]
+    end
+
+     it "should destroy associated searches" do
+      searches = @user.searches
+      @user.destroy
+      searches.each do |search|
+        Search.find_by_id(search.id).should be_nil
+      end
+    end
   end
 end
