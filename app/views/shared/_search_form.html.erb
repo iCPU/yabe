@@ -1,0 +1,11 @@
+<%= form_for(@search) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_area :query, placeholder: "Enter your search query..." %>
+  </div>
+
+  <div class="field">
+    <%= f.text_field :category, placeholder: "Do you know the auction category?" %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+<% end %>
