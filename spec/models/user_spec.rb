@@ -153,17 +153,12 @@ describe User do
       @user.destroy
       searches.each do |search|
         Search.find_by_id(search.id).should be_nil
-     end
+      end
+    end
 
     describe "status" do
-      let(:unfollowed_search) do
-        FactoryGirl.create(:search, user: FactoryGirl.create(:user))
-       end
-
        its(:feed) { should include(newer_search) }
        its(:feed) { should include(older_search) }
-       its(:feed) { should_not include(unfollowed_search) }
-     end
-   end
- end
+    end
+  end
 end

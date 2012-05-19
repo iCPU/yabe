@@ -3,7 +3,7 @@
     <div class="container">
       <%= link_to "Yabe", root_path, id: "logo" %>
       <nav>
-        <ul class="nav pull-right">
+        <ul class="nav pull-left">
           <li><%= link_to "Home", root_path %></li>
           <% if signed_in? %>
             <li><%= link_to "Users", users_path %></li>
