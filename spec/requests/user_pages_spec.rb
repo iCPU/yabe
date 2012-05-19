@@ -5,48 +5,51 @@ describe "User pages" do
   subject { page }
 
   describe "index" do
-    let(:user) { FactoryGirl.create(:user) }
+    let(:user) { FactoryGirl.create(:user) } 
+    let(:admin) { FactoryGirl.create(:admin) }
+
+    describe "as a user" do
+    before do  
+      sign_in user
+      visit users_path
+    end
+    it { should_not have_link('delete') }
+    end
+   
+    describe "as an admin user" do
 
     before do
       sign_in user
+      sign_in admin
       visit users_path
     end
 
     it { should have_selector('title', text: 'All users') }
 
-    describe "pagination" do
-      before(:all) { 30.times { FactoryGirl.create(:user) } }
-      after(:all)  { User.delete_all }
+      describe "pagination" do
+        before(:all) { 30.times { FactoryGirl.create(:user) } }
+        after(:all)  { User.delete_all }
 
-      it { should have_link('Next') }
-      its(:html) { should match('>2</a>') }
+        it { should have_link('Next') }
+        its(:html) { should match('>2</a>') }
 
-      it "should list each user" do
-        User.all[0..2].each do |user|
-          page.should have_selector('li', text: user.name)
+        it "should list each user" do
+          User.all[0..2].each do |user|
+            page.should have_selector('li', text: user.name)
+          end
         end
       end
-    end
 
-     describe "delete links" do
-
-      it { should_not have_link('delete') }
-
-      describe "as an admin user" do
-        let(:admin) { FactoryGirl.create(:admin) }
-        before do
-          sign_in admin
-          visit users_path
-        end
+      describe "delete links" do
 
         it { should have_link('delete', href: user_path(User.first)) }
         it "should be able to delete another user" do
           expect { click_link('delete') }.to change(User, :count).by(-1)
         end
         it { should_not have_link('delete', href: user_path(admin)) }
+        end
       end
     end
-  end
   
 
   describe "signup page" do
@@ -141,7 +144,6 @@ describe "User pages" do
     let!(:m2) { FactoryGirl.create(:search, user: user, query: "Bar",  category: "45") } 
     before { visit user_path(user) }
 
-    it { should have_selector('h1', text: user.name) }
     it { should have_selector('title', text: user.name) }
   
    describe "searches" do
