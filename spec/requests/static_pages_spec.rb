@@ -9,8 +9,24 @@ describe "Static pages" do
       it { should have_selector('h1', :text => 'Home Page') }
       it { should have_selector('title', text: full_title('')) }
       it { should_not have_selector 'title', text: '| Home' }
-  end
+    
+    describe "for signed-in users" do
+      let(:user) { FactoryGirl.create(:user) }
+      before do
+        FactoryGirl.create(:search, user: user, query: "Lorem ipsum", category: "334")
+        FactoryGirl.create(:search, user: user, query: "Dolor sit amet", category: "544")
+        sign_in user
+        visit root_path
+      end
 
+      it "should render the user's feed" do
+        user.feed.each do |item|
+          page.should have_selector("li##{item.id}", text: item.query)
+          page.should have_selector("li##{item.id}", integer: item.category)
+        end
+      end
+    end
+  end
 
   describe "Help page" do
     before { visit help_path }

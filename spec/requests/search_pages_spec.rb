@@ -13,11 +13,11 @@ describe "SearchPages" do
     describe "with invalid information" do
 
       it "should not create a search" do
-        expect { click_button "Post" }.should_not change(Search, :count)
+        expect { click_button "Search" }.should_not change(Search, :count)
       end
 
       describe "error messages" do
-        before { click_button "Post" }
+        before { click_button "Search" }
         it { should have_content('error') } 
       end
     end
@@ -30,9 +30,20 @@ describe "SearchPages" do
       end
 
       it "should create a search" do
-        expect { click_button "Post" }.should change(Search, :count).by(1)
+        expect { click_button "Search" }.should change(Search, :count).by(1)
+      end
+    end
+  end
+
+  describe "search destruction" do
+    before { FactoryGirl.create(:search, user: user) }
+
+    describe "as correct user" do
+      before { visit root_path }
+
+      it "should delete a search" do
+        expect { click_link "delete" }.should change(Search, :count).by(-1)
       end
     end
   end
 end
-

@@ -1,0 +1,18 @@
+<li id="<%= feed_item.id %>">
+  <span class="search_query">Search Query: <%= feed_item.query %></span> 
+<br/>
+  <span class="auction_category">Auction Category: <% if feed_item.category? %> <%= feed_item.category %>
+  <% else %>No category included
+  <% end %>
+  </span>
+<br/>
+  <span class="timestamp">
+    Searched <%= time_ago_in_words(feed_item.created_at) %> ago.
+  </span>
+
+  <% if current_user?(feed_item.user) %>
+    <%= link_to "delete", feed_item, method:  :delete,
+                                     confirm: "You sure?",
+                                     title:   feed_item.query %>
+  <% end %>
+</li>

@@ -1,7 +1,13 @@
 <li>
-  <span class="query"><%= search.query %></span>
- <span class="category"><%= search.category %></span>
+  <span class="query">Search query: <%= search.query %></span>
+ <span class="category">Auction category: <%= search.category %></span>
  <span class="timestamp">
-    Posted <%= time_ago_in_words(search.created_at) %> ago.
+    Searched <%= time_ago_in_words(search.created_at) %> ago.
   </span>
+
+  <% if current_user?(search.user) %>
+  <%= link_to "delete", search, method:  :delete,
+                                     confirm: "You sure?",
+                                     title:   search.query %>
+  <% end %>
 </li>

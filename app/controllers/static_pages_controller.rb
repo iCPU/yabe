@@ -1,6 +1,9 @@
 class StaticPagesController < ApplicationController
   def home
-    @search = current_user.searches.build if signed_in?  
+    if signed_in? 
+      @search = current_user.searches.build
+      @feed_items = current_user.feed.limit(4)
+    end
   end
 
   def help
