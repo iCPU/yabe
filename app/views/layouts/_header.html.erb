@@ -5,7 +5,7 @@
       <nav>
         <ul class="nav pull-left">
           <% if signed_in? %>
-	    <li><a href="<%= user_path(current_user) %>"><%= gravatar_for current_user, size: 20 %> Welcome <%= current_user.name %>,</a></li>
+	    <li><a href="<%= root_path %>"><%= gravatar_for current_user, size: 20 %> Welcome <%= current_user.name %>,</a></li>
             <li><%= link_to "Home", root_path %></li>
             <li><%= link_to "Search History", current_user %></li>
             <li><%= link_to "Edit Account", edit_user_path(current_user) %></li>

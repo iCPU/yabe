@@ -142,7 +142,11 @@ describe "User pages" do
     let(:user) { FactoryGirl.create(:user) }
     let!(:m1) { FactoryGirl.create(:search, user: user, query: "Foo", category: "33") }
     let!(:m2) { FactoryGirl.create(:search, user: user, query: "Bar",  category: "45") } 
-    before { visit user_path(user) }
+    
+    before do
+      sign_in user
+      visit user_path(user)
+    end
 
     it { should have_selector('title', text: user.name) }
   
