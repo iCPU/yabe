@@ -21,3 +21,4 @@ doc/
 .project
 .DS_Store
 bundler_stubs/
+heroku_env.rb
