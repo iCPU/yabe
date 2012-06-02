@@ -26,7 +26,8 @@ namespace :db do
     users = User.all(limit: 6)
     50.times do
       query = Faker::Lorem.sentence(3)
-      category = rand(1...4000)
+      r = Random.new
+      category = r.rand(1...4000)
       users.each { |user| user.searches.create!(query: query, category: category) }
     end
   end
