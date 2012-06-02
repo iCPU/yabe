@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120516203637) do
+ActiveRecord::Schema.define(:version => 20120602103034) do
+
+  create_table "categories", :force => true do |t|
+    t.string   "cat_name"
+    t.integer  "cat_id"
+    t.integer  "parent_id"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "searches", :force => true do |t|
     t.string   "query"

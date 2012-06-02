@@ -1,5 +1,5 @@
-CategoryID,CategoryLevel,CategoryName,CategoryParentID,UpdateTime,CategoryVersion
-353,1,Antiques,353,2012-04-06T01:51:40.000Z,91
+CategoryID,CategoryLevel,CategoryName,CategoryParentID,UpdateTime,2012-04-06T01:51:40.000Z
+353,1,Antiques,353,CategoryVersion,91
 13851,2,Antique Clocks,353,,
 100904,3,Bracket Clocks,13851,,
 66840,4,Pre-1900,100904,,

@@ -6,6 +6,9 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'faker', '1.0.1'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.5'
+gem "activerecord-import", ">= 0.2.0"
+gem 'pg', '0.12.2'
+gem 'awesome_nested_set'
 
 group :development do
   gem 'sqlite3', '1.3.5'
@@ -36,6 +39,6 @@ group :test do
   gem 'database_cleaner', '0.7.0'
 end
 
-group :production do
-  gem 'pg', '0.12.2'
-end
+#group :production do
+#  gem 'pg', '0.12.2'
+#end
