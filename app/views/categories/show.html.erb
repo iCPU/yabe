@@ -1,17 +1,17 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Cat name:</b>
+  <b>Category name:</b>
   <%= @category.ebay_cat_name %>
 </p>
 
 <p>
-  <b>Cat:</b>
+  <b>Ebay ID:</b>
   <%= @category.ebay_cat_id %>
 </p>
 
 <p>
-  <b>Parent:</b>
+  <b>Parent ID:</b>
   <%= @category.parent_id %>
 </p>
 
@@ -20,6 +20,4 @@
   <%= @category.ancestry %>
 </p>
 
-
-<%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>

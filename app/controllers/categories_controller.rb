@@ -1,4 +1,7 @@
 class CategoriesController < ApplicationController
+
+  before_filter :signed_in_user, only: [:index, :show]
+
   # GET /categories
   # GET /categories.json
   def index
