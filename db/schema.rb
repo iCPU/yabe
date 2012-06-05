@@ -11,17 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120602103034) do
+ActiveRecord::Schema.define(:version => 20120604155640) do
 
   create_table "categories", :force => true do |t|
-    t.string   "cat_name"
-    t.integer  "cat_id"
+    t.string   "ebay_cat_name"
+    t.integer  "ebay_cat_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "ancestry"
     t.integer  "parent_id"
-    t.integer  "lft"
-    t.integer  "rgt"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
+
+  add_index "categories", ["ancestry"], :name => "index_categories_on_ancestry"
 
   create_table "searches", :force => true do |t|
     t.string   "query"

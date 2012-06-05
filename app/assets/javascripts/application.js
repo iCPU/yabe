@@ -12,5 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.treeview
 //= require bootstrap
-//= require_tree .
+//= require_self
+
+$(document).ready( function() {
+$("#my_tree").treeview();
+} );

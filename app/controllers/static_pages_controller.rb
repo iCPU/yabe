@@ -3,6 +3,8 @@ class StaticPagesController < ApplicationController
     if signed_in? 
       @search = current_user.searches.build
       @feed_items = current_user.feed.limit(4)
+      @categories = Category.all
+      @category = Category.first
     end
   end
 

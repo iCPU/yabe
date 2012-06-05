@@ -12,25 +12,23 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :cat_name %><br />
-    <%= f.text_field :cat_name %>
+    <%= f.label :ebay_cat_name %><br />
+    <%= f.text_field :ebay_cat_name %>
   </div>
   <div class="field">
-    <%= f.label :cat_id %><br />
-    <%= f.number_field :cat_id %>
+    <%= f.label :ebay_cat_id %><br />
+    <%= f.number_field :ebay_cat_id %>
   </div>
   <div class="field">
     <%= f.label :parent_id %><br />
     <%= f.number_field :parent_id %>
   </div>
   <div class="field">
-    <%= f.label :lft %><br />
-    <%= f.number_field :lft %>
+    <%= f.label :ancestry %><br />
+    <%= f.text_field :ancestry %>
   </div>
-  <div class="field">
-    <%= f.label :rgt %><br />
-    <%= f.number_field :rgt %>
-  </div>
+
+
   <div class="actions">
     <%= f.submit %>
   </div>

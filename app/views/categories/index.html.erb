@@ -5,20 +5,17 @@
     <th>Cat name</th>
     <th>Cat</th>
     <th>Parent</th>
-    <th>Lft</th>
-    <th>Rgt</th>
-    <th></th>
+    <th>Ancestry</th>
     <th></th>
     <th></th>
   </tr>
 
 <% @categories.each do |category| %>
   <tr>
-    <td><%= category.cat_name %></td>
-    <td><%= category.cat_id %></td>
+    <td><%= category.ebay_cat_name %></td>
+    <td><%= category.ebay_cat_id %></td>
     <td><%= category.parent_id %></td>
-    <td><%= category.lft %></td>
-    <td><%= category.rgt %></td>
+    <td><%= category.ancestry %></td>
     <td><%= link_to 'Show', category %></td>
     <td><%= link_to 'Edit', edit_category_path(category) %></td>
     <td><%= link_to 'Destroy', category, confirm: 'Are you sure?', method: :delete %></td>
