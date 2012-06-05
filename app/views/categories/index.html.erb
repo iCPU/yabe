@@ -1,12 +1,12 @@
-<h1>Listing categories</h1>
+<h1>Ebay Categories</h1>
 
 <table>
   <tr>
-    <th>Cat name</th>
-    <th>Cat</th>
+    <th>Category name</th>
+    <th>Ebay ID</th>
     <th>Parent</th>
     <th>Ancestry</th>
-    <th></th>
+    <th>Controls</th>
     <th></th>
   </tr>
 
@@ -17,12 +17,8 @@
     <td><%= category.parent_id %></td>
     <td><%= category.ancestry %></td>
     <td><%= link_to 'Show', category %></td>
-    <td><%= link_to 'Edit', edit_category_path(category) %></td>
-    <td><%= link_to 'Destroy', category, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
-
-<%= link_to 'New Category', new_category_path %>
+<%= will_paginate @categories %>
