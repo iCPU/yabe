@@ -12,7 +12,13 @@
         <h3>Recent Searches</h3>
         <%= render 'shared/feed' %>
       </div>
-    </div>  
+    </div>
+    <%= render 'shared/cat_search' %>  
+ 
+  <% for category in Category.roots %>
+    <li><%= category.ebay_cat_name %></li>
+  <% end %>
+
   <% else %>
     <%= render 'shared/signin_form' %>
   <% end %> 

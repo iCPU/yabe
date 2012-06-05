@@ -1,0 +1,29 @@
+<table>
+  <tr>
+    <th>|Ebay ID|</th>
+    <th>|Category Tree|</th>
+    <th>|Controls|</th>
+  </tr>
+
+<% @categories.each do |category| %>
+  <tr>
+    <td><%= category.ebay_cat_id %></td>
+    <% if category.ancestors.any? %>
+      <td>
+      <p>
+         <% for cat in category.ancestors %>
+         <%= cat.ebay_cat_name %> &gt;
+         <% end %>
+         <%= category.ebay_cat_name %>
+      </p>  
+      </td>
+    <% else %>
+      <td><%= category.ebay_cat_name %>
+    <% end %>
+    <td><%= link_to 'Select', category %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= will_paginate @categories %>
+

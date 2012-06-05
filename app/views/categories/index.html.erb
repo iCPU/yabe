@@ -1,24 +1,10 @@
-<h1>Ebay Categories</h1>
+<h2>Category Search Results</h2>
 
-<table>
-  <tr>
-    <th>Category name</th>
-    <th>Ebay ID</th>
-    <th>Parent</th>
-    <th>Ancestry</th>
-    <th>Controls</th>
-    <th></th>
-  </tr>
-
-<% @categories.each do |category| %>
-  <tr>
-    <td><%= category.ebay_cat_name %></td>
-    <td><%= category.ebay_cat_id %></td>
-    <td><%= category.parent_id %></td>
-    <td><%= category.ancestry %></td>
-    <td><%= link_to 'Show', category %></td>
-  </tr>
+<%= form_tag categories_path, :method => :get do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
 <% end %>
-</table>
 
-<%= will_paginate @categories %>
+<%= render 'shared/cat_small_index' %>
