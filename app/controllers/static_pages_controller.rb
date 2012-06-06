@@ -5,9 +5,6 @@ class StaticPagesController < ApplicationController
       @ebay_cat_name = params[:ebay_cat_name]
       @yabe_query = current_user.searches.build
       @feed_items = current_user.feed.limit(4)
-      @categories = Category.all
-      @category = Category.first
-   
 
       @search = Category.search do
   
