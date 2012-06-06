@@ -5,7 +5,12 @@
 	  <h3>New Search</h3>
 	  <br/>
           <%= render 'shared/search_form' %>
-
+        </section>
+        
+        <section>
+          <h3>Category Finder</h3>
+          <br/>
+          <%= render 'shared/cat_search' %>
         </section>
       </aside>
       <div class="span8">
@@ -13,12 +18,6 @@
         <%= render 'shared/feed' %>
       </div>
     </div>
-    <%= render 'shared/cat_search' %>  
- 
-  <% for category in Category.roots %>
-    <li><%= category.ebay_cat_name %></li>
-  <% end %>
-
   <% else %>
     <%= render 'shared/signin_form' %>
   <% end %> 

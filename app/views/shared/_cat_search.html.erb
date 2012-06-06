@@ -1,10 +1,7 @@
-<h2>Category Search</h2>
-
-
 <%= form_tag categories_path, :method => :get do %>
   <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
+    <%= text_field_tag :search, params[:search], placeholder: "Enter category keywords..." %>
+    <%= submit_tag "Find Category", :name => nil, class: "btn btn-large btn-primary" %>
   </p>
 <% end %>
 

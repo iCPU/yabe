@@ -1,11 +1,14 @@
 <%= form_for(@yabe_query) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
-    <%= f.text_area :query, placeholder: "Enter your search query..." %>
+    <%= f.text_area :query, placeholder: "Enter your ebay search query..." %>
   </div>
 
   <div class="field">
     <%= f.text_field :category, placeholder: "Do you know the auction category?" %>
   </div>
-  <%= f.submit "Search", class: "btn btn-large btn-primary" %>
+
+  <%= f.submit "Get Results", class: "btn btn-large btn-primary" %>
 <% end %>
+
+
