@@ -5,7 +5,7 @@ class SearchesController < ApplicationController
   def create
     @search = current_user.searches.build(params[:search])
       if @search.save
-      flash[:success] = "Search created!"
+      flash[:success] = "Search passed to the wizard, results due back soon, please wait..."
       redirect_to root_path
     else
       @feed_items = []

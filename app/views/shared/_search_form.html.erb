@@ -5,10 +5,15 @@
   </div>
 
   <div class="field">
+    <% if  @ebay_cat_id %>
+    <%= f.text_field :category, value: @ebay_cat_id + "  " + @ebay_cat_name %>
+    <% else %>
     <%= f.text_field :category, placeholder: "Do you know the auction category?" %>
+  <% end %>
   </div>
 
-  <%= f.submit "Get Results", class: "btn btn-large btn-primary" %>
+  <%= f.submit "Yabe It!", class: "btn btn-large btn-primary" %>
+
 <% end %>
 
 
