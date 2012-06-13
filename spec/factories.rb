@@ -10,9 +10,11 @@ FactoryGirl.define do
     end
   end
  
- factory :search do
+  factory :yabe_query do
     query "Lorem ipsum"
-    category "44" 
+    ebay_cat "44" 
     user
   end
+
+
 end

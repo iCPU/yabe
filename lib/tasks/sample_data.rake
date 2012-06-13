@@ -27,8 +27,8 @@ namespace :db do
     50.times do
       query = Faker::Lorem.sentence(3)
       r = Random.new
-      category = r.rand(1...4000)
-      users.each { |user| user.yabe_queries.create!(query: query, category: category) }
+      ebay_cat = r.rand(1...4000)
+      users.each { |user| user.yabe_queries.create!(query: query, ebay_cat: ebay_cat) }
     end
   end
 end

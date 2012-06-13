@@ -140,8 +140,8 @@ describe "User pages" do
 
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
-    let!(:m1) { FactoryGirl.create(:search, user: user, query: "Foo", category: "33") }
-    let!(:m2) { FactoryGirl.create(:search, user: user, query: "Bar",  category: "45") } 
+    let!(:m1) { FactoryGirl.create(:yabe_query, user: user, query: "Foo", ebay_cat: "33") }
+    let!(:m2) { FactoryGirl.create(:yabe_query, user: user, query: "Bar",  ebay_cat: "45") } 
     
     before do
       sign_in user
@@ -153,9 +153,9 @@ describe "User pages" do
    describe "searches" do
       it { should have_content(m1.query) }
       it { should have_content(m2.query) }
-      it { should have_content(m1.category) }
-      it { should have_content(m2.category) }
-      it { should have_content(user.searches.count) }
+      it { should have_content(m1.ebay_cat) }
+      it { should have_content(m2.ebay_cat) }
+      it { should have_content(user.yabe_queries.count) }
     end
   end
 end

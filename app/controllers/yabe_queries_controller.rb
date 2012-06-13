@@ -1,10 +1,10 @@
-class SearchesController < ApplicationController
+class YabeQueriesController < ApplicationController
   before_filter :signed_in_user, only: [:create, :destroy]
   before_filter :correct_user, only: :destroy
 
   def create
-    @search = current_user.searches.build(params[:search])
-      if @search.save
+    @yabe_query = current_user.yabe_queries.build(params[:yabe_query])
+    if @yabe_query.save
       flash[:success] = "Search passed to the wizard, results due back soon, please wait..."
       redirect_to root_path
     else
@@ -14,15 +14,15 @@ class SearchesController < ApplicationController
   end
 
   def destroy
-    @search.destroy
+    @yabe_query.destroy
     redirect_back_or root_path
   end
 
   private
   
     def correct_user
-      @search = current_user.searches.find_by_id(params[:id])
-      redirect_to root_path if @search.nil?
+      @yabe_query = current_user.yabe_queries.find_by_id(params[:id])
+      redirect_to root_path if @yabe_query.nil?
     end
 end
 

@@ -16,7 +16,7 @@ Yabe::Application.routes.draw do
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
 
-  resources :searches, only: [:create, :destroy]
+  resources :yabe_queries, only: [:create, :destroy]
 
 
 # The priority is based upon order of creation:

@@ -12,8 +12,8 @@ describe "Static pages" do
     describe "for signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
       before do
-        FactoryGirl.create(:search, user: user, query: "Lorem ipsum", category: "334")
-        FactoryGirl.create(:search, user: user, query: "Dolor sit amet", category: "544")
+        FactoryGirl.create(:yabe_query, user: user, query: "Lorem ipsum", ebay_cat: "334")
+        FactoryGirl.create(:yabe_query, user: user, query: "Dolor sit amet", ebay_cat: "544")
         sign_in user
         visit root_path
       end
@@ -21,7 +21,7 @@ describe "Static pages" do
       it "should render the user's feed" do
         user.feed.each do |item|
           page.should have_selector("li##{item.id}", text: item.query)
-          page.should have_selector("li##{item.id}", integer: item.category)
+          page.should have_selector("li##{item.id}", integer: item.ebay_cat)
         end
       end
     end

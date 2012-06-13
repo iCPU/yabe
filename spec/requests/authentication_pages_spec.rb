@@ -75,17 +75,17 @@ describe "Authentication" do
       describe "for non-signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
      
-      describe "in the Searches controller" do
+      describe "in the Yabe Queries controller" do
 
         describe "submitting to the create action" do
-          before { post searches_path }
+          before { post yabe_queries_path }
           specify { response.should redirect_to(signin_path) }
         end
 
         describe "submitting to the destroy action" do
           before do
-            search = FactoryGirl.create(:search)
-            delete search_path(search)
+            yabe_query = FactoryGirl.create(:yabe_query)
+            delete yabe_query_path(yabe_query)
           end
           specify { response.should redirect_to(signin_path) }
         end

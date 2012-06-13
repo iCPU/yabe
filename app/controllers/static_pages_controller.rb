@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
     if signed_in? 
       @ebay_cat_id = params[:ebay_cat_id]
       @ebay_cat_name = params[:ebay_cat_name]
-      @yabe_query = current_user.searches.build
+      @yabe_query = current_user.yabe_queries.build
       @feed_items = current_user.feed.limit(4)
 
       @search = Category.search do
