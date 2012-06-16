@@ -2,7 +2,6 @@ production:
   solr:
     hostname: 54.247.177.128
     port: 8080
-    path: 'solr'
     log_level: WARNING
 
 development:
