@@ -1,7 +1,7 @@
 Yabe::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
-  Sunspot.config.solr.url = ENV["solr_url"]
+  Sunspot.config.solr.url = 'http://54.247.177.128:8080/solr/'
 
   # Code is not reloaded between requests
   config.cache_classes = true
