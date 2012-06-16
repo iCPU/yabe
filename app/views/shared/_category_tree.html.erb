@@ -1,0 +1,8 @@
+          <% cache do %>
+            <ul id="my_tree" class="filetree">
+              <% for category in Category.roots %>
+                <%= raw display_segment(category) %>
+              <% end %>
+            </ul>
+          <% end %>
+

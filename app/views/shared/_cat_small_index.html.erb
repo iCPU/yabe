@@ -1,0 +1,33 @@
+<table>
+  <tr>
+    <th>|Ebay ID|</th>
+    <th>|Category Tree|</th>
+    <th>|Controls|</th>
+  </tr>
+
+<% @categories.each do |category| %>
+  <tr>
+    <td><%= category.ebay_cat_id %></td>
+    <% if category.ancestors.any? %>
+      <td>
+      <p>
+      <% for cat in category.ancestors %>
+        <%= cat.ebay_cat_name %> &gt;
+      <% end %>
+      <%= category.ebay_cat_name %>
+      </p>  
+      </td>
+    <% else %>
+      <td><%= category.ebay_cat_name %>
+    <% end %>
+    <td>
+    <%= link_to 'Select Category', 
+        root_path(:ebay_cat_id => category.ebay_cat_id, :ebay_cat_name => category.ebay_cat_name), 
+        :class => "btn btn-small btn-primary" %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<%= will_paginate @categories %>
+

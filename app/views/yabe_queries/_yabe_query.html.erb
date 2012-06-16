@@ -1,0 +1,13 @@
+<li>
+  <span class="query">Search query: <%= yabe_query.query %></span>
+ <span class="category">Auction category: <%= yabe_query.ebay_cat %></span>
+ <span class="timestamp">
+    Searched <%= time_ago_in_words(yabe_query.created_at) %> ago.
+  </span>
+
+  <% if current_user?(yabe_query.user) %>
+  <%= link_to "delete", yabe_query, method:  :delete,
+                                     confirm: "You sure?",
+                                     title:   yabe_query.query %>
+  <% end %>
+</li>

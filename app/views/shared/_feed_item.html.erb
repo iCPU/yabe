@@ -1,7 +1,7 @@
 <li id="<%= feed_item.id %>">
   <span class="search_query">Search Query: <%= feed_item.query %></span> 
 <br/>
-  <span class="auction_category">Auction Category: <% if feed_item.category? %> <%= feed_item.category %>
+  <span class="auction_category">Auction Category: <% if feed_item.ebay_cat? %> <%= feed_item.ebay_cat %>
   <% else %>No category included
   <% end %>
   </span>

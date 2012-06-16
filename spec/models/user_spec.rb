@@ -1,17 +1,3 @@
-# == Schema Information
-#
-# Table name: users
-#
-#  id              :integer         not null, primary key
-#  name            :string(255)
-#  email           :string(255)
-#  created_at      :datetime        not null
-#  updated_at      :datetime        not null
-#  password_digest :string(255)
-#  remember_token  :string(255)
-#  admin           :boolean         default(FALSE)
-#
-
 require 'spec_helper'
 
 describe User do
@@ -134,31 +120,50 @@ describe User do
     its(:remember_token) { should_not be_blank }
   end
 
-  describe "search associations" do
+  describe "query associations" do
 
     before { @user.save }
-    let!(:older_search) do 
-      FactoryGirl.create(:search, user: @user, created_at: 1.day.ago)
+    let!(:older_query) do 
+      FactoryGirl.create(:yabe_query, user: @user, created_at: 1.day.ago)
     end
-    let!(:newer_search) do
-      FactoryGirl.create(:search, user: @user, created_at: 1.hour.ago)
-    end
-
-    it "should have the right search in the right order" do
-      @user.searches.should == [newer_search, older_search]
+    let!(:newer_query) do
+      FactoryGirl.create(:yabe_query, user: @user, created_at: 1.hour.ago)
     end
 
-    it "should destroy associated searches" do
-      searches = @user.searches
+    it "should have the right query in the right order" do
+      @user.yabe_queries.should == [newer_query, older_query]
+    end
+
+    it "should destroy associated queries" do
+      queries = @user.yabe_queries
       @user.destroy
-      searches.each do |search|
-        Search.find_by_id(search.id).should be_nil
+      queries.each do |query|
+        YabeQuery.find_by_id(query.id).should be_nil
       end
     end
 
     describe "status" do
-       its(:feed) { should include(newer_search) }
-       its(:feed) { should include(older_search) }
+       its(:feed) { should include(newer_query) }
+       its(:feed) { should include(older_query) }
     end
   end
 end
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer         not null, primary key
+#  name            :string(255)
+#  email           :string(255)
+#  created_at      :datetime        not null
+#  updated_at      :datetime        not null
+#  password_digest :string(255)
+#  remember_token  :string(255)
+#  admin           :boolean         default(FALSE)
+#
+# Indexes
+#
+#  index_users_on_email           (email) UNIQUE
+#  index_users_on_remember_token  (remember_token)
+#
+

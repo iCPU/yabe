@@ -1,0 +1,22 @@
+<%= form_for(@yabe_query) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <p>Query:</p>
+    <%= f.text_area :query, placeholder: "Enter your ebay search query..." %>
+  </div>
+
+  <div class="field">
+    <% if  @ebay_cat_id %>
+    <p>Category:</p>
+    <%= f.text_field :ebay_cat, value: @ebay_cat_id %>
+    <% else %>
+    <p>Category:</p>
+    <%= f.text_field :ebay_cat, placeholder: "Do you know the auction category?" %>
+  <% end %>
+  </div>
+
+  <%= f.submit "Yabe it!", class: "btn btn-large btn-primary" %>
+
+<% end %>
+
+

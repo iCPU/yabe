@@ -7,3 +7,4 @@ load(heroku_env) if File.exists?(heroku_env)
 
 # Initialize the rails application
 Yabe::Application.initialize!
+

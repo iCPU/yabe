@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120516203637) do
+ActiveRecord::Schema.define(:version => 20120610141638) do
+
+  create_table "categories", :force => true do |t|
+    t.string   "ebay_cat_name"
+    t.integer  "ebay_cat_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "ancestry"
+    t.integer  "parent_id"
+  end
+
+  add_index "categories", ["ancestry"], :name => "index_categories_on_ancestry"
 
   create_table "searches", :force => true do |t|
     t.string   "query"
@@ -35,5 +46,15 @@ ActiveRecord::Schema.define(:version => 20120516203637) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
+
+  create_table "yabe_queries", :force => true do |t|
+    t.string   "query"
+    t.integer  "ebay_cat"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "yabe_queries", ["user_id", "created_at"], :name => "index_yabe_queries_on_user_id_and_created_at"
 
 end

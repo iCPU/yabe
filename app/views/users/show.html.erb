@@ -1,13 +1,13 @@
 <% provide(:title, @user.name) %>
 <div class="row">
   <div class="span8">
-    <% if @user.searches.any? %>
-      <h3>Search History (<%= @user.searches.count %>)</h3>
-      <%= will_paginate @searches %>
+    <% if @user.yabe_queries.any? %>
+      <h3>Search History (<%= @user.yabe_queries.count %>)</h3>
+      <%= will_paginate @yabe_queries %>
       <ol class="searches">
-        <%= render @searches %>
+        <%= render @yabe_queries %>
       </ol>
-      <%= will_paginate @searches %>
+      <%= will_paginate @yabe_queries %>
     <% end %>
   </div>
 </div>

@@ -1,0 +1,49 @@
+<h1>Ebay Categories</h1>
+
+
+<%= form_tag categories_path, :method => :get do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+
+<table>
+  <tr>
+    <th>|SQL ID|</th>
+    <th>|Category name|</th>
+    <th>|Ebay ID|</th>
+    <th>|Parent|</th>
+    <th>|Anc. ID's|</th>
+    <th>|Ancestry|</th>
+    <th>|Controls|</th>
+    <th></th>
+  </tr>
+
+<% @categories.each do |category| %>
+  <tr>
+    <td><%= category.id %></td>
+    <td><%= category.ebay_cat_name %></td>
+    <td><%= category.ebay_cat_id %></td>
+    <td><%= category.parent_id %></td>
+    <td><%= category.ancestry %></td>
+    <% if category.ancestors.any? %>
+      <td>
+      <p>
+         <% for cat in category.ancestors %>
+         <%= cat.ebay_cat_name %> &gt;
+         <% end %>
+         <%= category.ebay_cat_name %>
+      </p>  
+      </td>
+    <% else %>
+      <td><%= category.ebay_cat_name %>
+    <% end %>
+    <td><%= link_to 'Show', category %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= will_paginate @categories %>
+
