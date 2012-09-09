@@ -1,5 +1,5 @@
 class YabeQuery < ActiveRecord::Base
-  attr_accessible :ebay_cat, :query
+  attr_protected :user_id
 
   belongs_to :user
   
