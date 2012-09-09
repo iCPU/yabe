@@ -5,7 +5,7 @@ class YabeQueriesController < ApplicationController
   # PUT /yabe_queries/1
   # PUT /yabe_queries/1.json
   def update
-    @yabe_query = Yabe_query.find(params[:id])
+    @yabe_query = YabeQuery.find(params[:id])
 
     respond_to do |format|
       if @yabe_query.update_attributes(params[:yabe_query])
@@ -17,6 +17,19 @@ class YabeQueriesController < ApplicationController
       end
     end
   end
+ 
+  # GET /yabe_queries/1
+  # GET /yabe_queries/1.json
+  def show
+    @yabe_query = YabeQuery.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @yabe_query }
+    end
+  end
+
+
 
   def create
     @yabe_query = current_user.yabe_queries.build(params[:yabe_query])
