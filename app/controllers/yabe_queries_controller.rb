@@ -2,19 +2,29 @@ class YabeQueriesController < ApplicationController
   before_filter :signed_in_user, only: [:create, :destroy]
   before_filter :correct_user, only: :destroy
 
+
+  def index
+    @yabe_queries = YabeQuery.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @yabe_queries }
+    end
+  end
+
+
   # PUT /yabe_queries/1
   # PUT /yabe_queries/1.json
   def update
+
     @yabe_query = YabeQuery.find(params[:id])
 
-    respond_to do |format|
-      if @yabe_query.update_attributes(params[:yabe_query])
-        format.html { redirect_to @yabe_query, notice: 'Yabe Query was successfully updated.' }
-        format.json { render json: @yabe_query, status: :updated, location: @yabe_query  }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @Yabe_query.errors, status: :unprocessable_entity }
-      end
+    if @yabe_query.update_attributes(params[:yabe_query])
+      flash[:notice] = "YabeQuery has been updated."
+      redirect_to @yabe_query
+    else
+      flash[:alert] = "YabeQuery has not been updated."
+      render :action => "edit"
     end
   end
  
