@@ -12,6 +12,11 @@
       <%= f.label :email %>
       <%= f.text_field :email %>
 
+      <% if @user.admin? %>
+        <%= f.label :authentication_token %>
+        <%= f.text_field :authentication_token %>
+     <% end %> 
+
       <%= f.label :password %>
       <%= f.password_field :password %>
 

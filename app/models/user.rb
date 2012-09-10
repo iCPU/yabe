@@ -1,10 +1,11 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :password, :password_confirmation
+  attr_accessible :email, :name, :password, :password_confirmation, :authentication_token
   has_secure_password
   has_many :searches, dependent: :destroy
   has_many :yabe_queries, dependent: :destroy
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
+  before_create :generate_authentication_token
 
   validates :name, presence: true, length: { maximum: 50 }
 
@@ -31,6 +32,12 @@ class User < ActiveRecord::Base
 
     def create_remember_token
       self.remember_token = SecureRandom.urlsafe_base64
+    end
+
+    def generate_authentication_token
+      begin
+        self.authentication_token = SecureRandom.hex
+      end while self.class.exists?(authentication_token: authentication_token)
     end
 end
 # == Schema Information
