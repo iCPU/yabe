@@ -4,13 +4,13 @@ class Category < ActiveRecord::Base
   attr_accessible :ebay_cat_id, :ebay_cat_name, :parent_id
 
   
-  searchable do
-    text :ebay_cat_name
-    integer :id
-    integer :parent_id
-    string :ebay_cat_name
-    string :ancestry
-  end
+#  searchable do
+#    text :ebay_cat_name
+#    integer :id
+#    integer :parent_id
+#    string :ebay_cat_name
+#    string :ancestry
+#  end
 
 
    def self.arrange_as_array(options={}, hash=nil)

@@ -6,21 +6,21 @@ class CategoriesController < ApplicationController
   # GET /categories.json
   def index
 
-    @search = Category.search do
+#    @search = Category.search do
 
-       fulltext params[:search]
-       paginate(:per_page => 10, :page => params[:page])
+#       fulltext params[:search]
+#       paginate(:per_page => 10, :page => params[:page])
 
    #    order_by(:parent_id, :asc)
-       order_by(:ancestry, :asc)
-       order_by(:ebay_cat_name, :asc)
+#       order_by(:ancestry, :asc)
+#       order_by(:ebay_cat_name, :asc)
 
-    end
+#    end
 
-    @categories = @search.results
+#    @categories = @search.results
 
 
- #   @categories = Category.paginate(:per_page => 10, :page => params[:page])
+    @categories = Category.paginate(:per_page => 10, :page => params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
