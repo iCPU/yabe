@@ -1,9 +1,9 @@
-#production:
-#  solr:
-#    hostname: 54.247.177.128
-#    port: 8080
-#    log_level: WARNING
-#    path: '/solr'
+production:
+  solr:
+    hostname: 54.247.183.215
+    port: 8080
+    log_level: WARNING
+    path: '/solr'
 
 development:
   solr:
