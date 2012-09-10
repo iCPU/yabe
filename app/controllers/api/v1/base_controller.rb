@@ -1,17 +1,14 @@
 class Api::V1::BaseController < ActionController::Base
+
   respond_to :json
-  before_filter :authenticate_user
+
+  before_filter :restrict_access
 
   private
-    def authenticate_user
-      @current_user = User.find_by_authentication_token(params[:token])
 
-      unless @current_user
-        respond_with({:error => "Token is invalid." })
-      end
+  def restrict_access
+    authenticate_or_request_with_http_token do |token, options|
+      ApiKey.exists?(access_token: token)
     end
-
-    def current_user
-      @current_user
-    end
+  end
 end
