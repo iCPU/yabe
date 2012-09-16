@@ -7,7 +7,7 @@ gem 'faker', '1.0.1'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate', '0.0.5'
 gem "activerecord-import", ">= 0.2.0"
-gem 'pg', '0.12.2'
+gem 'pg'
 gem 'ancestry'
 
 group :development do
@@ -23,7 +23,7 @@ group :assets do
   gem 'uglifier', '1.2.3'
 end
 
-gem 'jquery-rails', '2.0.0'
+gem "jquery-rails"
 
 group :test, :development do
   gem 'rspec-rails', '2.9.0'
